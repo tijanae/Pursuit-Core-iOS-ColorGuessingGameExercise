@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var hiScoreLabel: UILabel!
     
     var color = Color.getRandomColor()
+    var game = Game()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +33,13 @@ class ViewController: UIViewController {
         default: fatalError()
         }
         if color.getDominantColor() == guessedColor {
-            print("You win")
+            game.makeCorrectGuess()
         } else {
-            print("You lose")
+            game.reset()
         }
+        hiScoreLabel.text = "urScore: \(game.hiScore)"
+        urScoreLabel.text = "urScore: \(game.userScore)"
+
 //        switch sender.tag {
 //        case 0:
 //            if color.getDominantColor() == .red {
