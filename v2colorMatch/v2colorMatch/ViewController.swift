@@ -15,23 +15,51 @@ class ViewController: UIViewController {
     @IBOutlet weak var urScoreLabel: UILabel!
     @IBOutlet weak var hiScoreLabel: UILabel!
     
+    var color = Color.getRandomColor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorView.backgroundColor = color.toUIColor()
         // Do any additional setup after loading the view.
     }
 
     @IBAction func colorButtonPressed(_ sender: UIButton) {
+        let guessedColor: Color.ColorType
         switch sender.tag {
-        case 0:
-            print("red button")
-        case 1:
-            print("green ")
-        case 2:
-            print("blue")
-        default:
-            fatalError()
+        case 0: guessedColor = .red
+        case 1: guessedColor = .green
+        case 2: guessedColor = .blue
+        default: fatalError()
         }
+        if color.getDominantColor() == guessedColor {
+            print("You win")
+        } else {
+            print("You lose")
+        }
+//        switch sender.tag {
+//        case 0:
+//            if color.getDominantColor() == .red {
+//                print("You win!")
+//            } else {
+//                print("You lose")
+//            }
+//        case 1:
+//            if color.getDominantColor() == .green {
+//                print("You win!")
+//            } else {
+//                print("You lose")
+//            }
+//        case 2:
+//            if color.getDominantColor() == .blue {
+//                print("You win!")
+//            } else {
+//                print("You lose")
+//            }
+//        default:
+//            fatalError()
+//        }
+        color = Color.getRandomColor()
+        colorView.backgroundColor = color.toUIColor()
     }
     
 }
